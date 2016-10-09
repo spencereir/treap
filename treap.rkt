@@ -57,8 +57,10 @@
 ;; in the original treap, as well as
 ;; the given new value
 (define (insert-treap t v)
-  (let ([r (split t v)])
-    (merge (merge (car r) (make-treap v)) (cdr r))))
+  (if (not (search-treap t v))
+    (let ([r (split t v)])
+      (merge (merge (car r) (make-treap v)) (cdr r)))
+    t))
 
 ;; delete-treap: treap, number -> treap
 ;; returns a treap consisting of every element
